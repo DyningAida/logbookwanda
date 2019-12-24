@@ -1,0 +1,62 @@
+\chapter{Pertemuan 7}
+
+\section{Issues \#61}
+Pada \textit{issues \#61} (\textit{def faceRecognition(self, fileName):}) adalah sebuah fungsi untuk mengolah faceRecognition dengan inputan berupa path gambar.
+
+\section{Issues \#62}
+Pada \textit{issues \#62} (\textit{face\_recognition.load\_image\_file()}) adalah sebuah fungsi untuk meload gambar.
+\begin{verbatim}
+angga_picture = face_recognition.load_image_file("angga.jpg")
+\end{verbatim}
+
+\section{Issues \#63}
+Pada \textit{issues \#63} (\textit{face\_recognition.face\_encodings()}) adalah sebuah fungsi untuk mendecode gambar kita menjadi sebuah bilangan numerik yang berada pada suatu list.
+\begin{verbatim}
+angga_encoding = face_recognition.face_encodings(angga_picture)[0]
+\end{verbatim}
+
+\section{Issues \#64}
+Pada \textit{issues \#64} (\textit{known\_face\_encodings = \[\]}) adalah sebuah variabel yang berisi list encoding dari foto berisi muka yang telah di encode.
+\begin{verbatim}
+known_face_encodings = [
+    rolly_encoding,
+    angga_encoding
+]
+\end{verbatim}
+
+\section{Issues \#65}
+Pada \textit{issues \#65} (\textit{face\_recognition.face\_locations()}) adalah sebuah fungsi untuk menemukan lokasi wajah (manusia) pada suatu gambar.
+\begin{verbatim}
+#test_image = gambar/foto
+
+face_locations = face_recognition.face_locations(test_image)
+\end{verbatim}
+
+\section{Issues \#66}
+Pada \textit{issues \#66} (\textit{face\_recognition.compare\_faces()}) adalah untuk membandingkan 2 wajah yang sudah diencoding apakah sama atau tidak dengan parameter tambahan yaitu tolerance.
+\begin{verbatim}
+results = face_recognition.compare_faces(known_face_encodings, face_encoding, tolerance=0.45)
+\end{verbatim}
+
+\section{Issues \#67}
+Pada \textit{issues \#67} (\textit{tolerance=0.45}) adalah sebuah toleransi perbandingan dengan wajah yang kita bandingkan, jika range untuk toleransi dari 0 sampai dengan 1 semakin besar toleransi maka kemungkinan wajah yang sama akan semakin besar (tidak akurat). Semakin kecil toleransi (sangat akurat) tetapi terlalu kecil akan menyebabkan wajah tidak ditemukan dikarenakan keketatan dalam pemilihan wajah dengan tingkat toleransi yang kecil.
+
+\section{Issues \#68}
+Pada \textit{issues \#68} (\textit{if "face" in self.message:}) untuk mengecek apakah ada kata face dalam chat yang dikirimkan user kepada chatbot.
+
+\section{Issues \#69}
+Pada \textit{issues \#69} (\textit{zip()}) digunakan untuk menggabungkan 2 list menjadi 1 dengan aturan penyesuaian list yang ada jika list 0 maka akan di gabungkan dengan list yang bernilai 0 juga. contoh,
+\begin{verbatim}
+#In
+a = [1, 2]
+b = [a, b]
+
+zip(a, b)
+
+#Out
+[(1,a), (2,b)]
+\end{verbatim}
+
+\section{Issues \#70}
+Pada \textit{issues \#70} (\textit{unsupported operand type(s) for -: 'list' and 'tuple'}) disebabkan dikarenakan perbedaan data antara yang satu list dengan yang satu lagi bertipe data tuple. Pemecahan masalahnya adalah dengan cara mengecek isi kedua datanya.
+

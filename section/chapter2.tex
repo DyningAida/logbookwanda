@@ -1,0 +1,36 @@
+\chapter{Pertemuan 2}
+
+\section{Issues \#11}
+Pada \textit{issues \#11} (\textit{Movie Schedule}) \textit{chatbot} akan mencarikan jadwal film dengan parameter yanag diberikan yaitu katakunci, namakota, namabioskop, namalokasi.
+\begin{verbatim}
+if "bioskop" in self.message:
+    self.movieSchedule(self.message)
+\end{verbatim}
+Jika kata kunci "bioskop" terdeteksi pada pesan yang dikirimkan oleh pengirim pesan maka chatbot akan menjalankan method movieSchedule yang berisi variabel namakota, namabioskop, dan namalokasi yang akan diinputkan berdasarkan pesan yang dikirimkan oleh pengirim pesan.
+
+\section{Issues \#12}
+Pada \textit{issues \#12} (\textit{Searching Product on Tokopedia E-Commerce Site}) \textit{chatbot} akan mencarikan produk yang diinginkan oleh pengirim pesan pada website Tokopedia. Namun, kami menggantinya menjadi website tokoperhutani. 
+
+\section{Issues \#13}
+Pada \textit{issues \#13} (\textit{Chatbot Send Link The Product for Confirmation}) \textit{chatbot} akan mengirimkan link dari produk yang telah ditemukan oleh chatbot kepada pengirim pesan untuk melakukan konfirmasi apakah benar produk tersebut yang sedang dicari oleh pengirim pesan. Fitur ini kami ganti menjadi \textit{chatbot} yang dapat mengirimkan link pembayaran tokoperhutani.
+
+\section{Issues \#14}
+Pada \textit{issues \#14} (\textit{The Chatbot Sort The Price}) \textit{chatbot} akan mencarikan produk yang diinginkan oleh pengirim pesan dan mengurutkan harga produk, agar pengirim pesan mendapatkan produk yang diinginkan dengan harga yang murah. Fitur ini telah ditiadakan karena pada tokoperhutani tidak ada fitur untuk mengurutkan harga.
+
+\section{Issues \#15}
+Pada \textit{issues \#15} (\textit{The bot will automatically click the product after sort from cheap to expensive.}) \textit{chatbot} akan mengklik produk yang telah diurutkan harganya, sehingga chatbot akan memilih produk dengan harga yang murah. Fitur ini telah ditiadakan karena pada tokoperhutani kami hanya menerapkan chatbot yang dapat mengklik produk sesuai dengan kode produk yang telah dikirimkan oleh pengirim pesan dan melakukan checkout serta mengirimkan link pembayaran kepada pengirim pesan.
+
+\section{Issues \#16}
+Pada \textit{issues \#16} (\textit{The bot will ask you to check the link and confirmation is that product that you want or not. if yes "agree" if not "disagree".}) \textit{chatbot} akan mengirimkan link dan pesan agar pengirim pesan melakukan pengecekan terhadap link produk yang telah dikirimkan oleh \textit{chatbot} dengan tujuan untuk meminta persetujuan pengirim pesan untuk melakukan pembelian terhadap produk tersebut. Fitur ini telah ditiadakan dan diganti menjadi website tokoperhutani.
+
+\section{Issues \#17}
+Pada \textit{issues \#17} (\textit{The bot will ask you what payment methods that you want to use. example: BNI, BCA, etc}) \textit{chatbot} akan mengirimkan pesan yang berisi pertanyaan tentang metode pembayaran apa yang diinginkan oleh pengirim pesan, sehingga \textit{chatbot} dapat memilihkan metode pembayaran yang sesuai dengan yang diinginkan pengirim pesan. Fitur ini telah diganti menjadi metode pembayaran pada tokoperhutani.
+
+\section{Issues \#18}
+Pada \textit{issues \#18} (\textit{Send The Payment Number}) \textit{chatbot} akan mengirimkan kode pembayaran kepada pengirim pesan. Fitur ini diganti menjadi \textit{chatbot} yang mengirimkan link pembayaran tokoperhutani kepada pengirim pesan.
+
+\section{Issues \#19}
+Pada \textit{issues \#19} (\textit{Deadline Payment}) \textit{chatbot} akan memberitahukan kepada pengirim pesan deadline pembayaran dari produk yang telah dipesan. Fitur ini telah ditiadakan.
+
+\section{Issues \#20}
+Pada \textit{issues \#20} (\textit{Amount The Products}) \textit{chatbot} akan mengirimkan pemberitahuan tentang jumlah barang yang akan dibeli oleh pengirim pesan. Fitur ini telah ditiadakan.

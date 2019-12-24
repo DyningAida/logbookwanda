@@ -1,0 +1,113 @@
+\chapter{Pertemuan 6}
+
+\section{Issues \#51}
+Pada \textit{issues \#51} (\textit{Method cocoNamesLoad}) sebuah fungsi untuk mengeload sebuah data dari file coco.names
+\begin{verbatim}
+def cocoNamesLoad(self):
+    listClass = []
+
+    with open("coco.names", "r") as daftarNama:
+        for i in daftarNama.readlines():
+            cocoNames = i.strip()
+            listClass.append(cocoNames)
+
+    return listClass
+\end{verbatim}
+
+\section{Issues \#52}
+Pada \textit{issues \#52} (\textit{with open("coco.names", "r") as daftarNama}) fungsi ini dijalankan untuk mengeload file file "coco.names" dan kita hanya dalam mode "r" yaitu membaca, dan kita masukkan ke variabel daftarNama.
+
+\section{Issues \#53}
+Pada \textit{issues \#53} (\textit{listClass = []}) sebuah variabel list yang akan menampung data data dengan cara listClass.append(data)
+
+\section{Issues \#54}
+Pada \textit{issues \#54} (\textit{Method loadYolo}) sebuah fungsi untuk mengeload sebuah data dari yolo dan memproses gambar inputan sehingga menghasilkan list object yang ada pada gambar inputan.
+\begin{verbatim}
+def loadYolo(self, coconames, fileName):
+    model = cv2.dnn.readNet("yolov3.weights", "yolov3.cfg")
+
+    layerNames = model.getLayerNames()
+
+    outputLayer = []
+
+    for i in model.getUnconnectedOutLayers():
+        outputLayer.append(layerNames[i[0] - 1])
+
+    path = r"C:\Users\trian\Downloads"
+    nameFile = fileName + ".jpeg"
+
+    result = os.path.join(path, nameFile)
+
+    img = cv2.imread(result)
+
+    width, height, channels = img.shape
+
+    blob = cv2.dnn.blobFromImage(img, 0.00392, (416, 416), (0, 0, 0), True, crop=False)
+
+    model.setInput(blob)
+    outs = model.forward(outputLayer)
+
+    boxes = []
+    class_ids = []
+    confidences = []
+    for out in outs:
+        for detection in out:
+            scores = detection[5:]
+            class_id = np.argmax(scores)
+            confidence = scores[class_id]
+
+            if confidence > 0.5:
+                center_x = int(detection[0] * width)
+                center_y = int(detection[1] * height)
+
+                w = int(detection[2] * width)
+                h = int(detection[3] * height)
+
+                x = int(center_x - w / 2)
+                y = int(center_y - h / 2)
+
+                boxes.append([x, y, w, h])
+                class_ids.append(class_id)
+                confidences.append(float(confidence))
+
+    objectNames = []
+    for i in range(len(boxes)):
+        label = coconames[class_ids[i]]
+
+        if label in objectNames:
+            print("sudah ada")
+        else:
+            objectNames.append(label)
+
+    return objectNames
+\end{verbatim}
+
+\section{Issues \#55}
+Pada \textit{issues \#55} (\textit{model = cv2.dnn.readNet("yolov3.weights", "yolov3.cfg")}) kode ini digunakan untuk membaca data set yolo dan konfigurasi neural network dari yolo.
+
+\section{Issues \#56}
+Pada \textit{issues \#56} (\textit{img = cv2.imread(result)}) kode ini digunakan untuk menampilkan gambar dengan result = path foto.
+
+\section{Issues \#57}
+Pada \textit{issues \#57} (\textit{Redundant Object}) ketika ada 2 object yang sama dalam 1 foto maka yolo akan memproses 2 kali dan output 2 kali sehingga ketika kita masukkan ke list maka akan ada 2 string berobject sama. Maka dari itu kode ini digunakan untuk mengecek apakah sudah ada string tersebut pada list yang sudah berisi string dari output object yang diproses. Jika sudah ada maka string tersebut tidak akan di masukkan ke dalam list.
+\begin{verbatim}
+if label in objectNames:
+    print("sudah ada")
+else:
+    objectNames.append(label)
+\end{verbatim}
+
+\section{Issues \#58}
+Pada \textit{issues \#58} (\textit{if "yolo" in self.message}) perngecekan ini dilakukan jika ada kata yolo yang user kirimkan ke chatbot maka fungsi yolo akan dijalankan.
+
+\section{Issues \#59}
+Pada \textit{issues \#59} (\textit{Code to Run Yolo}) kode untuk menjalankan yolo.
+\begin{verbatim}
+objectNames = self.listToString(self.loadYolo(self.cocoNamesLoad(), name))
+\end{verbatim}
+
+\section{Issues \#60}
+Pada \textit{issues \#60} (\textit{ChatBot Type the Reply Message}) kode yang digunakan untuk membalas pesan user bahwa pada foto yang terakhir dikirim ada object apa saja.
+\begin{verbatim}
+self.typeAndSendMessage("Difoto terakhir yang dikirim ada object: " + objectNames)
+\end{verbatim}

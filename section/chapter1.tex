@@ -1,0 +1,76 @@
+\chapter{Pertemuan 1}
+
+\section{Issues \#1}
+Pada \textit{issues \#1} (\textit{Selenium Can't Close Current Tab}) permasalahannya yaitu tab yang telah terbuka tidak mau ditutup dengan cara \textit{shortcut key} yang pada umumnya digunakan yaitu (CTRL + W). Pemecahan masalahnya yaitu dengan menggunakan \textit{method} \begin{verbatim}
+self.driver.switch_to_window(self.driver.window_handles[1])
+\end{verbatim}
+sehingga tab tersebut akan pindah sesuai dengan \textit{list} yang kita pilih. Setelah \textit{switch} jalankan method \begin{verbatim}
+self.driver.close()
+\end{verbatim}
+untuk mengclose tab pada \textit{list} yang kita pilih lalu, lakukan \textit{switch} lagi untuk kembali ke halaman awal.
+
+\section{Issues \#2}
+Pada \textit{issues \#2} (\textit{Detecting The New Message on Whatsapp Web with Selenium}) yaitu bagaimana caranya kita mendeteksi bahwa ada pesan yang masuk pada \textit{WhatsApp}. 
+\begin{verbatim}
+try:
+            self.chat = self.driver.find_elements_by_class_name("P6z4j")[0]
+            self.chat.click()
+            self.chat.click()
+            self.chat.click()
+except:
+            print("no message")
+\end{verbatim}
+Pendeteksian pesan ada atau tidaknya yaitu pada \textit{"P6z4j"} yaitu \textit{class name} pada \textit{HTML} dan list yang ke 0, karena 0 merupakan pesan yang muncul pertama maka kita akan mengklik pesan yang pertama kali muncul. Setelah, terdeteksi ada pesan masuk maka \textit{bot} akan mengklik 3 kali dimaksudkan agar \textit{bot} benar-benar mengklik pesan tersebut. \textit{Try and except} digunakan dikarenakan program berjalan secara terus-menerus sehingga \textit{bot} akan mencoba mencari apakah ditemukan \textit{class name}nya, jika tidak ditemukan maka akan mencetak tulisan \textit{"no message"}.
+
+\section{Issues \#3}
+Pada \textit{issues \#3} (\textit{Detecting A Value Message from Sender to ChatBot}) yaitu kita akan mengambil sebuah \textit{value} dari isi \textit{chat} yang \textit{user} kirimkan ke \textit{bot}.
+\begin{verbatim}
+try:
+    self.span = self.driver.find_elements_by_xpath('(.//span)')[-10].text
+except:
+    print("sender not sending some message")
+\end{verbatim}
+Berdasarkan beberapa percobaan yang kita lakukan, pesan terakhir terdapat polanya yaitu pesan selalu berapa di \textit{tag span} dengan \textit{list} -10. Setelah kita temukan polanya, kita transformasikan dari \textit{object selenium} menjadi sebuah \textit{text} atau \textit{string} sehingga (.text) digunakan untuk mentransformasikannya.
+
+\section{Issues \#4}
+Pada \textit{issues \#4} (\textit{Typing and Sending Message with Whatsapp Web Selenium (Python)}) mengetik dan mengirim pesan adalah fitur penting di Chatbot, jadi setelah chatbot menerima pesan dan membaca pesan, chatbot harus menanggapi obrolan. Jadi chatbot akan mengetik dan mengirim secara otomatis dengan parameter pesan apa yang harus dikirim oleh chatbot.
+
+\section{Issues \#5}
+Pada \textit{issues \#5} (\textit{The Program Will Wait Until User Scan Barcode}) fungsi ini digunakan untuk agar \textit{program} menunggu admin sampai memindai kode \textit{barcode}, agar program tidak \textit{error} sampai kode \textit{barcode} muncul dan admin memindainya.
+\begin{verbatim}
+def waitLogin(self):
+        self.target = '"_3RWII"'
+        self.x_arg = '//div[contains(@class, ' + self.target + ')]'
+        self.wait = WebDriverWait(self.driver, 600)
+        self.wait.until(EC.presence_of_element_located((By.XPATH, self.x_arg)))
+\end{verbatim}
+
+\section{Issues \#6}
+Pada \textit{issues \#6} (\textit{Error: TypeError}) \textit{TypeError} terjadi ketika sebuah parameter yang diberikan tidak sesuai dengan fungsi yang kita jalankan, contohnya \textbf{\textit{len(42)}} ini akan menyebabkan \textit{TypeError} dikarenakan fungsi \textit{len()} untuk menghitung berapa panjang dari sebuah variabel yang ditampung selain numerik. Dalam kasus ini, \textit{TypeError} yang terjadi adalah
+\begin{verbatim}
+#class object
+class Chatbot (object):
+    def __init__(self, filename):
+        self.fileName = filename
+		
+#initiation
+
+#error
+run = chatbot.Chatbot()
+
+#fixed
+run = chatbot.Chatbot("data")
+\end{verbatim}
+dikarenakan saat inisiasi \textit{object} harus ada parameter yang diberikan pada \textit{class Chatbot}.
+
+\section{Issues \#7}
+Pada \textit{issues \#7} (\textit{Error: NoSuchElementException}) \textit{NoSuchElementException} adalah \textit{error} yang terjadi ketika selenium ingin mencari sebuah object dari HTML tetapi tidak dapat ditemukan object tersebut. Pemecahan masalahnya adalah dengan cara menggunakan metode \textit{Try and Except}
+
+\section{Issues \#8}
+Pada \textit{issues \#8} (\textit{Error: ListIndexOutofRange}) \textit{ListIndexOutofRange} adalah \textit{error} yang terjadi ketika indeksnya tidak ada atau diluar jangkauan.
+
+\section{Issues \#9}
+Pada \textit{issues \#9} (\textit{Error: FileNotFoundError}) \textit{FileNotFoundError} adalah \textit{error} yang terjadi ketika parameter file yang kita berikan tetapi program tidak dapat menemukan file yang dijadikan parameter tersebut. Pemecahan masalahnya adalah dengan cara mengecek apakan file terebut sudah benar dalam hal penamaan, lokasi, dan apakah file tersebut ada.
+
+\section{Issues \#10}
+Pada \textit{issues \#10} (\textit{Error: WebDriverException}) \textit{WebDriverException} adalah \textit{error} yang disebabkan ketika kita ingin menjalankan sebuah selenium driver tetapi internet kita dalam keadaan tidak tersambung atau terputus, jadi pastikan internet tersambung.

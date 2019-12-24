@@ -1,0 +1,98 @@
+\chapter{Pertemuan 3}
+
+\section{Issues \#21}
+Pada \textit{issues \#21} (\textit{Login Variable}) \textit{chatbot} membutuhkan dua variabel agar bisa login website tokoperhutani variabel yaitu username dan password. Variabel ini akan secara otomatis terisi pada bagian username dan password dan akan secara otomatis klik tombol login. pengisian username dan password serta klik tombol login dilakukan secara otomatis oleh chatbot.
+
+\section{Issues \#22}
+Pada \textit{issues \#22} (\textit{send\_keys Method}) dengan menggunakan \textit{method send\_keys} \textit{chatbot} dapat mengisikan username dan password pada kolom username dan password hanya dengan mengirimkan username dan password yang telah diinputkan pada variabel usEmail dan usPass.
+\begin{verbatim}
+usEmail = "email"
+usPass = "password"
+
+self.driver.find_element_by_id("email").send_keys(usEmail)
+self.driver.find_element_by_id("password").send_keys(usPass)
+\end{verbatim} 
+
+\section{Issues \#23}
+Pada \textit{issues \#23} (\textit{.click Method on Pyhton Selenium}) .click digunakan untuk mengklik sebuah tombol yang terdapat pada website. \textit{chatbot} akan mengklik tombol login secara otomatis menggunakan method .click
+\begin{verbatim}
+self.driver.find_elements_by_class_name("le-button")[0].click()
+\end{verbatim}
+
+\section{Issues \#24}
+Pada \textit{issues \#24} (\textit{daftarBelanjaan Variable}) variabel daftarBelanjaan berisi list kode produk yang akan dibeli oleh pengirim pesan, variabel memiliki tipe data list agar pengirim pesan dapat melakukan pembelian terhadap satu atau lebih item produk.
+\begin{verbatim}
+daftarBelanjaan = ['193150214695', '193150214696', '193150214751', '193150215151', 
+                   '193150215166', '193150215173', '193150215178', '193150215190', 
+                   '193150215192', '193150215398', '193150215511', '193150215524',
+          		   '193150214698', '193150215373']
+\end{verbatim}
+
+\section{Issues \#25}
+Pada \textit{issues \#25} (\textit{varTableData Variable}) variabel ini berguna untuk menampung semua item data yang terdapat pada website tokoperhutani. 
+\begin{verbatim}
+varTableData = self.driver.find_elements_by_xpath("//table[@id='example' 
+                                                   and @class='display select nowrap dataTable no-footer']
+                                                   /tbody/tr")
+\end{verbatim}
+
+\section{Issues \#26}
+Pada \textit{issues \#26} (\textit{Variable List for Counting items}) varibel ini berguna untuk menampung hasil perhitungan jumlah data yang terdapat pada website tokoperhutani. Variabel forCounting memiliki tipe data list, karena jumlah data yang terdapat pada website tokoperhutani sangat banyak.
+\begin{verbatim}
+forCounting = []
+\end{verbatim}
+
+\section{Issues \#27}
+Pada \textit{issues \#27} (\textit{for i in varTableData to Looping}) perulangan ini digunakan untuk melakukan perhitungan terhadap item yang terdapat pada website tokoperhutani.
+\begin{verbatim}
+for i in asd:
+    abc = i.text[9:22]
+    waduwek = abc.splitlines()
+    forCounting.append(waduwek)
+
+itungan = 10 - len(forCounting)
+\end{verbatim}
+
+\section{Issues \#28}
+Pada \textit{issues \#28} (\textit{while cariData to While Loop}) pengecekan terhadap item yang terdapat pada daftarBelanjaan dengan item data yang ada pada website tokoperhutani. Apabila item data pada daftarBelanjaan ada pada varTableData maka item data tersebut akan diklik untuk dimasukkan kedalam keranjang belanjaan.
+\begin{verbatim}
+while cariData:
+varTableData = self.driver.find_elements_by_xpath("//table[@id='example' and @class='display select nowrap dataTable no-footer']/tbody/tr")
+
+	for i in varTableData:
+   		itungan += 1
+   		abc = i.text[9:22]
+   		waduwek = abc.splitlines()
+
+   		if listOfOrder[0] in daftarBelanjaan:
+       		i.click()
+      		wektow = daftarBelanjaan.index(listOfOrder[0])
+       		daftarBelanjaan.pop(wektow)
+
+        if len(daftarBelanjaan) == 0:
+            cariData = False
+            self.driver.find_elements_by_class_name("le-button")[1].click()
+        if itungan == 10 and len(daftarBelanjaan) >= 1:
+            print("masih ada belanjaan lanjut")
+            itungan = 0
+            self.driver.find_element_by_id("example_previous").click()
+\end{verbatim}
+
+\section{Issues \#29}
+Pada \textit{issues \#29} (\textit{for i in varTableData to Loop The Second Data}) perulangan ini bertujuan untuk melakukan pengecekan dan perhitungan terhadap item yang terdapat pada website tokoperhutani.
+\begin{verbatim}
+for i in varTableData:
+   	itungan += 1
+   	abc = i.text[9:22]
+   	waduwek = abc.splitlines()
+\end{verbatim}
+
+
+\section{Issues \#30}
+Pada \textit{issues \#30} (\textit{if listOfOrder[0] in daftarBelanjaan Variable}) pengecekan ini digunakan untuk membandingkan apakah item yang terdapat pada daftarBelanjaan ada pada varTableData, jika ada maka item tersebut akan diklik.
+\begin{verbatim}
+if listOfOrder[0] in daftarBelanjaan:
+   i.click()
+   wektow = daftarBelanjaan.index(listOfOrder[0])
+   daftarBelanjaan.pop(wektow)
+\end{verbatim}

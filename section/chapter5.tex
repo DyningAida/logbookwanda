@@ -1,0 +1,108 @@
+\chapter{Pertemuan 5}
+
+\section{Issues \#41}
+Pada \textit{issues \#41} (\textit{Method retrievePicture}) sebuah fungsi untuk mendownload gambar dari WhatsApp.
+\begin{verbatim}
+def retrievePicture(self):
+    self.driver.find_elements_by_class_name("_18vxA")[-1].click()
+    sleep(1)
+
+    self.driver.find_element_by_css_selector("span[data-icon='download']").click()
+    sleep(1)
+
+    self.driver.find_element_by_css_selector("span[data-icon='x-viewer']").click()
+    sleep(1)
+\end{verbatim}
+
+\section{Issues \#42}
+Pada \textit{issues \#42} (\textit{Method getName}) sebuah fungsi untuk mengambil nama dari pengirim jika individual, dan akan mengambil nama grup di pengirim berada dalam sebuah grup.
+\begin{verbatim}
+def getName(self):
+    try:
+        self.driver.find_element_by_class_name("_3fs0K").click()
+        sleep(1)
+
+        self.driver.find_element_by_class_name("_2vJOg").click()
+        sleep(1)
+
+        name = self.driver.find_elements_by_class_name("_F7Vk")[1].text
+        sleep(1)
+
+        self.driver.find_element_by_css_selector("span[data-icon='x-viewer']").click()
+        sleep(1)
+    except Exception as e:
+        print(e)
+        print("Grup")
+
+        name = self.driver.find_elements_by_class_name("_3u328")[0].text
+        sleep(1)
+
+    return name
+\end{verbatim}
+
+\section{Issues \#43}
+Pada \textit{issues \#43} (\textit{Method renamePicture}) sebuah fungsi untuk mengubah nama berkas yang telah kita download.
+\begin{verbatim}
+def renamePicture(self, fileName):
+    dir_name = "/Users/trian/Downloads/"
+    list = os.listdir(dir_name)
+
+    print(list)
+
+    for item in list:
+        if item.endswith(".jpeg"):
+            os.rename(os.path.join(dir_name, item), os.path.join(dir_name, 
+                                   fileName + ".jpeg"))
+\end{verbatim}
+
+\section{Issues \#44}
+Pada \textit{issues \#44} (\textit{Method deletePicture}) sebuah fungsi untuk menghapus berkas foto yang ada dikomputer.
+\begin{verbatim}
+def deletePicture(self):
+    dir_name = "/Users/trian/Downloads/"
+    list = os.listdir(dir_name)
+
+    for item in list:
+        if item.endswith(".jpeg"):
+            os.remove(os.path.join(dir_name, item))
+\end{verbatim}
+
+\section{Issues \#45}
+Pada \textit{issues \#45} (\textit{Method sendPicture}) sebuah fungsi untuk mengupload dan mengirimkan berkas foto dari komputer ke WhatsApp.
+\begin{verbatim}
+def sendPicture(self, phoneNumber, filePath):
+    self.driver.get("https://web.whatsapp.com/send?phone=" + phoneNumber)
+
+    self.waitLogin()
+    sleep(3)
+
+    self.driver.find_element_by_css_selector("span[data-icon='clip']").click()
+    sleep(2)
+
+    path = r"C:\Users\trian\Downloads"
+    nameFile = filePath + ".jpeg"
+
+    result = os.path.join(path, nameFile)
+
+    self.driver.find_element_by_css_selector("input[type='file']").send_keys(result)
+    sleep(1)
+
+    self.driver.find_element_by_css_selector("span[data-icon='send-light").click()
+    sleep(1)
+\end{verbatim}
+
+\section{Issues \#46}
+Pada \textit{issues \#46} (\textit{os.path.join}) sebuah fungsi untuk menggabungkan 2 path menjadi satu, contoh: path1 = "/users/pisanggoreng/" dan path2 = "Downloads/" maka ketika kita lakukan fungsi os.path.join maka hasilnya akan seperti "/users/pisanggoreng/Downloads/"
+
+\section{Issues \#47}
+Pada \textit{issues \#47} (\textit{os.remove}) sebuah fungsi untuk menghapus sebuah file maupun folder pada komputer.
+
+\section{Issues \#48}
+Pada \textit{issues \#48} (\textit{os.listdir}) sebuah fungsi untuk menampilkan sebuat folder/directory yang berada pada path.
+
+\section{Issues \#49}
+Pada \textit{issues \#49} (\textit{os.rename}) sebuah fungsi untuk mengubah nama file atau folder.
+
+\section{Issues \#50}
+Pada \textit{issues \#50} (\textit{item.endswith(".jpeg")}) sebuah fungsi untuk memberitahu bahwa hanya akan dieksekusi jika file tersebut memiliki ekstensi .jpeg
+
